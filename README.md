@@ -21,6 +21,7 @@ CREATE TABLE Users (
     CreatedAt DATETIME DEFAULT GETDATE(), -- Timestamp of record creation
     UpdatedAt DATETIME DEFAULT GETDATE(), -- Timestamp of record update
     IsDeleted BIT DEFAULT 0 -- Soft delete flag
+    -- The Users table conforms to the Third Normal Form (3NF)
 );
 ```
 #### Addresses
@@ -39,6 +40,7 @@ CREATE TABLE Addresses (
     IsDeleted BIT DEFAULT 0, -- Soft delete flag
     CreatedAt DATETIME DEFAULT GETDATE(), -- Timestamp of record creation
     UpdatedAt DATETIME DEFAULT GETDATE() -- Timestamp of record update
+    -- The Addresses table conforms to the Third Normal Form (3NF)
 );
 ```
 #### UserAddress
@@ -49,6 +51,7 @@ CREATE TABLE UserAddress (
     PRIMARY KEY (UserId, AddressId), -- Composite primary key
     FOREIGN KEY (UserId) REFERENCES Users(Id), -- Foreign key constraint
     FOREIGN KEY (AddressId) REFERENCES Addresses(Id) -- Foreign key constraint
+    -- The UserAddress table conforms to the Third Normal Form (3NF)
 );
 ```
 #### ConversationMetadata
@@ -62,6 +65,7 @@ CREATE TABLE ConversationMetadata (
     CreatedAt DATETIME DEFAULT GETDATE(), -- Timestamp of record creation
     UpdatedAt DATETIME DEFAULT GETDATE(), -- Timestamp of record update
     FOREIGN KEY (UserId) REFERENCES Users(Id) -- Foreign key constraint
+    -- The ConversationMetadata table conforms to the Third Normal Form (3NF)
 );
 ```
 #### GPTInstances
@@ -70,6 +74,7 @@ CREATE TABLE GPTInstances (
     GptId INT IDENTITY(1,1) PRIMARY KEY, -- Auto-increment primary key
     GptVersion NVARCHAR(20), -- Version of the GPT instance
     GptDescription NVARCHAR(255) -- Description of the GPT instance
+    -- The GPTInstances table conforms to the Third Normal Form (3NF)
 );
 ```
 #### Conversations
@@ -83,8 +88,10 @@ CREATE TABLE Conversations (
     Sender NVARCHAR(50), -- Sender of the message
     Timestamp DATETIME DEFAULT GETDATE(), -- Timestamp of the message
     FOREIGN KEY (UserId) REFERENCES Users(Id), -- Foreign key constraint
-    FOREIGN KEY (ConversationId) REFERENCES ConversationMetadata(ConversationId) ON DELETE CASCADE, -- Foreign key constraint with cascade delete
+    FOREIGN KEY (ConversationId) REFERENCES ConversationMetadata(ConversationId) ON DELETE CASCADE,
+     -- Foreign key constraint with cascade delete
     FOREIGN KEY (GptId) REFERENCES GPTInstances(GptId) -- Foreign key constraint
+    -- The Conversations table conforms to the Third Normal Form (3NF)
 );
 ```
 #### UsageLog
@@ -95,6 +102,7 @@ CREATE TABLE UsageLog (
     Action NVARCHAR(255) NOT NULL, -- Action performed by the user
     Timestamp DATETIME DEFAULT GETDATE(), -- Timestamp of the action
     FOREIGN KEY (UserId) REFERENCES Users(Id) -- Foreign key constraint
+    -- The UsageLog table conforms to the Third Normal Form (3NF)
 );
 ```
 ## Functionality
