@@ -261,4 +261,3 @@ Query specified user's log
 ```sql
 SELECT * FROM UsageLog WHERE user_id = 123 ORDER BY timestamp DESC;
 ```
----
