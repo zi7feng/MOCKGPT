@@ -3,7 +3,67 @@
 ## Description
 MockGPT is a project designed to simulate the functionality of ChatGPT. It includes a front-end interface that mimics the user experience of ChatGPT, as well as a back-end system for managing user data, conversations, and various administrative tasks. The project aims to provide a comprehensive solution for simulating interactions with ChatGPT, including features such as user information management, conversation metadata management, conversations management, and usage log management.
 ## Database Design
-TODO
+#### Users Table:
+Columns:
+- Id: Primary key, auto-incremented.
+- Email: User's email address (unique, not null).
+- PhoneNumber: User's phone number (not null).
+- Password: User's password (not null).
+- LastName, FirstName, MiddleName: User's name components.
+- Nickname: User's nickname.
+- AvatarUrl: URL of user's avatar.
+- IsGptPlus: Boolean indicating if the user is a GPT Plus member.
+- CreatedAt: Timestamp of record creation.
+- UpdatedAt: Timestamp of record update.
+- IsDeleted: Boolean for soft deletion.
+
+#### Addresses Table:
+Columns:
+- Id: Primary key, auto-incremented.
+- StreetNumber, StreetName, StreetType, Direction: Address components.
+- City, State, PostalCode, Country: Location details.
+- AddressType: Type of address (e.g., Home, Work).
+- IsDeleted: Boolean for soft deletion.
+- CreatedAt: Timestamp of record creation.
+- UpdatedAt: Timestamp of record update.
+
+#### UserAddress Table:
+Columns:
+- UserId, AddressId: Composite primary key (foreign keys to Users and Addresses tables).
+
+#### ConversationMetadata Table:
+Columns:
+- ConversationId: Primary key, auto-incremented.
+- UserId: Foreign key to Users table.
+- Title: Title of the conversation.
+- IsArchived: Boolean indicating if the conversation is archived.
+- IsDeleted: Boolean for soft deletion.
+- CreatedAt: Timestamp of record creation.
+- UpdatedAt: Timestamp of record update.
+
+#### GPTInstances Table:
+Columns:
+- GptId: Primary key, auto-incremented.
+- GptVersion: Version of the GPT instance.
+- GptDescription: Description of the GPT instance.
+
+#### Conversations Table:
+Columns:
+- Id: Primary key, auto-incremented.
+- UserId: Foreign key to Users table.
+- ConversationId: Foreign key to ConversationMetadata table.
+- GptId: Foreign key to GPTInstances table.
+- Message: Content of the message.
+- Sender: Sender of the message.
+- Timestamp: Timestamp of the message.
+
+#### UsageLog Table:
+Columns:
+- Id: Primary key, auto-incremented.
+- UserId: Foreign key to Users table.
+- Action: Action performed by the user.
+- Timestamp: Timestamp of the action.
+
 ## DDL
 #### Users
 ```sql
