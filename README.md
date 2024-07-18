@@ -2,11 +2,8 @@
 
 ## Description
 MockGPT is a project designed to simulate the functionality of ChatGPT. It includes a front-end interface that mimics the user experience of ChatGPT, as well as a back-end system for managing user data, conversations, and various administrative tasks. The project aims to provide a comprehensive solution for simulating interactions with ChatGPT, including features such as user information management, conversation metadata management, conversations management, and usage log management.
-
----
 ## Database Design
 
----
 ## DDL
 #### Users
 ```sql
@@ -100,7 +97,6 @@ CREATE TABLE UsageLog (
     FOREIGN KEY (UserId) REFERENCES Users(Id) -- Foreign key constraint
 );
 ```
----
 ## Functionality
 ### User Information Management
 Registeration
@@ -173,10 +169,10 @@ VALUES (1, 1, 1, 'This is a new message', 'user', GETDATE());
 ```
 Query conversations and senders by conversation ID
 ```sql
-SELECT c.message, c.sender, c.timestamp
+SELECT c.Message, c.Sender, c.Timestamp
 FROM Conversations c
-WHERE c.conversation_id = 123
-ORDER BY c.timestamp;
+WHERE c.ConversationId = 123
+ORDER BY c.Timestamp;
 ```
 Query conversations by keyword and retrieve conversation ID
 ```sql
