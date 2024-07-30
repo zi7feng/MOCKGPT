@@ -5,21 +5,16 @@ jobs:
     docker:
       - image: cimg/openjdk:19.0.1
     steps:
-      - run:
-          name: Install Checkstyle
-          command: |
-            curl -O https://github.com/checkstyle/checkstyle/releases/download/checkstyle-10.0/checkstyle-10.0-all.jar
-            mkdir -p /usr/local/bin
-            mv checkstyle-10.0-all.jar /usr/local/bin/checkstyle.jar
+      - checkout
       - run:
           name: Build
           command: mvn -B -DskipTests clean package
       - run:
-          name: Run Code Format Check
-          command: java -jar /usr/local/bin/checkstyle.jar -c /google_checks.xml src/main/java/
-      - run:
           name: Test
           command: mvn test
+      - run:
+          name: Style Check
+          command: mvn checkstyle:check
 
 workflows:
   build-and-test:
