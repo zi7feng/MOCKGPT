@@ -10,6 +10,9 @@ jobs:
           name: Build
           command: mvn -B -DskipTests clean package
       - run:
+          name: Code Format Check
+          command: mvn fmt:check
+      - run:
           name: Test
           command: mvn test
 
