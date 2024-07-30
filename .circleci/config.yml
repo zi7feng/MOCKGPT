@@ -12,6 +12,9 @@ jobs:
       - run:
           name: Test
           command: mvn test
+      - run:
+          name: Style Check
+          command: mvn checkstyle:check
 
 workflows:
   build-and-test:
