@@ -8,7 +8,7 @@ class MockgptApplicationTests {
 
     @Test
     void contextLoads() {
-        System.out.println("this is a test");
+        System.out.println("this is a test22");
     }
 
 }
