@@ -4,5 +4,5 @@ spring:
     url: jdbc:mysql://rm-bp1sj96djc721c3f9zo.mysql.rds.aliyuncs.com:3306/GPT
     username: root
     password: Gpt12345
-server:
-  port: 8080
+#server:
+#  port: 8080
