@@ -2,6 +2,7 @@ create database if not exists GPT;
 
 use GPT;
 
+
 drop table if exists user;
 CREATE TABLE User (
                        id BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT 'id', -- Auto-increment primary key
